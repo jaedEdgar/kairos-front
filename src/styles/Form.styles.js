@@ -17,7 +17,7 @@ export const Input = styled.input.attrs((props) => ({
   &:focus {
     border: none;
     outline: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.2);
   }
   &:focus {
     border-bottom: ${(props) =>

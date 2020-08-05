@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Check, CheckHiden } from "./Form.styles";
+import { Input, Check, CheckHiden } from "../styles/Form.styles";
 
 export const InputText = (props) => {
   return <Input {...props} />;

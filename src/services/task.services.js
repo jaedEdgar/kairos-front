@@ -26,8 +26,7 @@ export const getTasks = async (notebookId) => {
   return tasks;
 };
 
-export const toggleCheckTask = async (taskId, isChecked) => {
-  const status = !isChecked ? 1 : 2;
+export const toggleCheckTask = async (taskId, status) => {
   const options = {
     method: "PATCH",
     body: JSON.stringify({ status }),

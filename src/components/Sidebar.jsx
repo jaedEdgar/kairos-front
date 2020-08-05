@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Sider,
   Menu,
@@ -6,34 +6,47 @@ import {
   Logo,
   FooterBtn,
   InputAddNotebook,
-} from "./Sidebar.styles";
+} from "../styles/Sidebar.styles";
+import Context from "../store/context";
+import { addNotebook, selectNotebook } from "../store/actions";
 
-function Sidebar({ data, onSelect, onAddNewNotebook, notebookSelected }) {
+function Sidebar() {
+  const { globalState, globalDispatch } = useContext(Context);
   const [showAddNotebook, setShowAddNotebook] = useState(false);
   const [nameNewNotebook, setNameNewNotebook] = useState("");
+  const { notebooks, notebook } = globalState;
+
   const handleSaveNameNotebook = (e) => {
     e.preventDefault();
-    nameNewNotebook.length >= 3 && onAddNewNotebook(nameNewNotebook);
+    nameNewNotebook.length >= 3 && addNotebook(globalDispatch, nameNewNotebook);
     setShowAddNotebook(false);
     setNameNewNotebook("");
   };
+
+  const handleChangeNotebook = (id) => {
+    selectNotebook(globalDispatch, id);
+  };
+
+  useEffect(() => {
+    console.log(notebook);
+  }, [notebook]);
   return (
     <Sider theme="light">
       <Logo>KAIROS</Logo>
-      <Menu defaultSelectedKeys={["0"]} mode="inline">
-        {data.map((el, index) => {
+      <Menu>
+        {Array.from(notebooks.values()).map((el, index) => {
           return (
             <Item
               key={index.toString()}
-              onClick={() => onSelect(el.id)}
-              active={el.id === notebookSelected}
+              onClick={() => handleChangeNotebook(el.id)}
+              active={el.id === notebook.id}
             >
               {el.name}
             </Item>
           );
         })}
         {showAddNotebook && (
-          <form onSubmit={(e) => handleSaveNameNotebook(e)}>
+          <form onSubmit={(e) => handleChangeNotebook(e)}>
             <InputAddNotebook
               placeholder="Untitle notebook"
               autoFocus

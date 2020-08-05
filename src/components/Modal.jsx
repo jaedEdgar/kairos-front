@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Global, Wrapp, Contain } from "./Modal.styles";
+import { Global, Wrapp, Contain } from "../styles/Modal.styles";
 const modalContainer = document.getElementById("modalsContainer");
 
 const ContentAddNotebook = () => {

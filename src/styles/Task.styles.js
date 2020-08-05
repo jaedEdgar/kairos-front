@@ -14,4 +14,5 @@ export const TaskTitle = styled.p`
   width: calc(90% - 30px);
   max-width: 600px;
   text-decoration: ${(props) => (props.lineThrough ? "line-through" : "none")};
+  cursor: pointer;
 `;
