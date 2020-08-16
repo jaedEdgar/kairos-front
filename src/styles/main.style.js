@@ -24,8 +24,8 @@ export const Layout = styled.div`
 `;
 
 export const Contain = styled.div`
-  width: calc(100% - 250px);
-  background-color: #fff;
+  width: ${(props) => (props.width ? props.width : "calc(100% - 250px)")};
+  background-color: #fdfdfd;
   border: 15px #eef4f8 solid;
   min-height: calc(100vh - 40px);
   padding: 45px;

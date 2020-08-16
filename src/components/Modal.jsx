@@ -1,31 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Global, Wrapp, Contain } from "../styles/Modal.styles";
+import { Global, Wrapp, Contain, Footer, Body } from "../styles/Modal.styles";
 const modalContainer = document.getElementById("modalsContainer");
-
-const ContentAddNotebook = () => {
-  return (
-    <>
-      <input type="Text" placeholder="Untitled" autoFocus />
-
-      <button>Cancelar</button>
-      <button>Aceptar</button>
-    </>
-  );
-};
 
 const Modal = ({ isOpen, children }) => {
   return isOpen
     ? ReactDOM.createPortal(
         <Wrapp>
           <Global />
-          <Contain>
-            <ContentAddNotebook /> {children}
-          </Contain>
+          <Contain>{children}</Contain>
         </Wrapp>,
         modalContainer
       )
     : null;
 };
 
+export const ModalBody = ({ children }) => {
+  return <Body>{children}</Body>;
+};
+
+export const ModalFooter = ({ children, justify }) => {
+  return <Footer justify={justify}>{children}</Footer>;
+};
 export default Modal;

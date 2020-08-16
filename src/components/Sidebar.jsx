@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {
   Sider,
   Menu,
@@ -11,29 +11,28 @@ import Context from "../store/context";
 import { addNotebook, selectNotebook } from "../store/actions";
 
 function Sidebar() {
-  const { globalState, globalDispatch } = useContext(Context);
+  const { globalState, globalActions } = useContext(Context);
   const [showAddNotebook, setShowAddNotebook] = useState(false);
   const [nameNewNotebook, setNameNewNotebook] = useState("");
   const { notebooks, notebook } = globalState;
 
   const handleSaveNameNotebook = (e) => {
     e.preventDefault();
-    nameNewNotebook.length >= 3 && addNotebook(globalDispatch, nameNewNotebook);
+    nameNewNotebook.length >= 3 && globalActions.addNotebook(nameNewNotebook);
     setShowAddNotebook(false);
     setNameNewNotebook("");
   };
 
   const handleChangeNotebook = (id) => {
-    selectNotebook(globalDispatch, id);
+    globalActions.selectNotebook(id);
   };
 
-  useEffect(() => {
-    console.log(notebook);
-  }, [notebook]);
   return (
     <Sider theme="light">
       <Logo>KAIROS</Logo>
       <Menu>
+        <Item active>Today</Item>
+        <hr />
         {Array.from(notebooks.values()).map((el, index) => {
           return (
             <Item

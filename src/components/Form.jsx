@@ -1,9 +1,12 @@
 import React from "react";
-import { Input, Check, CheckHiden } from "../styles/Form.styles";
+import {
+  Input,
+  Check,
+  CheckHiden,
+  TextArea as TA,
+} from "../styles/Form.styles";
 
-export const InputText = (props) => {
-  return <Input {...props} />;
-};
+export const InputText = Input;
 
 export const Checkbox = ({ id, value, isChecked, onCheck }) => {
   return (
@@ -18,3 +21,5 @@ export const Checkbox = ({ id, value, isChecked, onCheck }) => {
     </label>
   );
 };
+
+export const TextArea = TA;

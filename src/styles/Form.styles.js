@@ -10,8 +10,37 @@ export const Input = styled.input.attrs((props) => ({
   font-weight: 500;
   padding: 6px 5px;
   vertical-align: middle;
-  width: calc(90% - 30px);
+  width: 100%;
   max-width: 600px;
+  text-decoration: ${(props) => (props.lineThrough ? "line-through" : "none")};
+  margin-bottom: 25px;
+  &,
+  &:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+  }
+  &:focus {
+    border-bottom: ${(props) =>
+      props.lineThrough ? "none" : " 1px solid rgba(51, 51, 51, 0.2)"};
+  }
+  &::placeholder {
+    color: rgba(51, 51, 51, 0.2);
+  }
+`;
+
+export const TextArea = styled.textarea`
+  background: transparent;
+  color: ${(props) => (props.lineThrough ? "#DFDFDF" : "#292929")};
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 5px;
+  vertical-align: middle;
+  width: 100%;
+  max-width: 600px;
+  resize: none;
+  min-height: 70px;
   text-decoration: ${(props) => (props.lineThrough ? "line-through" : "none")};
   &,
   &:focus {
@@ -52,7 +81,6 @@ export const Check = styled.div`
   border-color: ${(props) => (props.isChecked ? "#DFDFDF" : "#292929")};
   border-radius: 3px;
   position: relative;
-  margin-right: 10px;
   cursor: pointer;
   &::after {
     width: 1px;

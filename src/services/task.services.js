@@ -16,7 +16,6 @@ export const addNewTask = async (notebookId, taskName) => {
 
   const response = await fetch(urls.Tasks, options);
   const task = await response.json();
-  console.log(task);
   return task;
 };
 
@@ -45,6 +44,18 @@ export const updateNameTask = async ({ id, name }) => {
     body: JSON.stringify({
       name,
     }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(`${urls.Task}/${id}`, options);
+  const task = await response.json();
+  return task;
+};
+
+export const deleteTask = async (id) => {
+  const options = {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },

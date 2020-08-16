@@ -26,7 +26,24 @@ export const Contain = styled.div`
   max-width: 100%;
   background: #fff;
   padding: 15px;
-  min-height: 200px;
+  min-height: 100px;
   margin: 0 auto 100px;
   box-shadow: 0 1px 5px 1px rgba(56, 56, 56, 0.2);
+`;
+
+export const Body = styled.div`
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: ${(props) => (props.justify ? props.justify : "flex-end")};
+  padding: 0.75rem;
+  border-bottom-right-radius: calc(0.3rem - 1px);
+  border-bottom-left-radius: calc(0.3rem - 1px);
 `;

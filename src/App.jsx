@@ -1,32 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from "react";
 import Sidebar from "./components/Sidebar";
-import List from "./components/List";
+import DailyTasks from "./components/DailyTasks";
 import Context from "./store/context";
-import { getListNotebooks, getListTasks, updateTask } from "./store/actions";
 import MainStyles, { Layout, Contain } from "./styles/main.style";
 
 const App = () => {
-  const { globalState, globalDispatch } = useContext(Context);
-  const { notebook, tasks } = globalState;
+  const { globalState, globalActions } = useContext(Context);
+  const { notebook, tasks, dailyTasks } = globalState;
 
   useEffect(() => {
-    getListNotebooks(globalDispatch);
+    globalActions.getListTaskToday();
+    globalActions.getListNotebooks();
   }, []);
 
   useEffect(() => {
     if (notebook.id !== null) {
-      getListTasks(globalDispatch, notebook.id);
+      globalActions.getListTasks(notebook.id);
     }
   }, [notebook]);
 
   const handleUpdateTask = (task) => {
     const indexTask = findIndexById(task.id);
     if (tasks[indexTask].name !== task.name) {
-      updateTask(globalDispatch, task);
+      globalActions.updateTask(task);
     }
   };
-
   const findIndexById = (id) => {
     return tasks.findIndex((e) => e.id === id);
   };
@@ -35,9 +34,13 @@ const App = () => {
     <Layout>
       <MainStyles />
       <Sidebar />
-      <Contain>
-        {tasks && <List onUpdateTask={(task) => handleUpdateTask(task)} />}
-      </Contain>
+
+      {dailyTasks && (
+        <Contain width={"450px"}>
+          <DailyTasks onUpdateTask={(task) => handleUpdateTask(task)} />
+        </Contain>
+      )}
+      {/* <Contain>  {tasks && <List onUpdateTask={(task) => handleUpdateTask(task)} />}</Contain> */}
     </Layout>
   );
 };

@@ -5,3 +5,6 @@ export const SELECT_NOTEBOOK = "SELECT_NOTEBOOK";
 export const SELECT_TASK = "SELECT_TASK";
 export const ADD_NEW_TASK = "ADD_NEW_TASK";
 export const TOGLE_TASK = "TOGLE_TASK";
+export const LIST_DAILY_TASKS = "LIST_DAILY_TASKS";
+export const ADD_NEW_DAILY_TASK = "ADD_NEW_DAILY_TASK";
+export const GET_DAILY_HISTORY = "GET_DAILY_HISTORY";
